@@ -339,42 +339,6 @@ button:active {
   box-shadow: none;
 }
 
-.site-footer {
-  margin-top: 60px;
-  padding: 30px 20px;
-  text-align: center;
-  background: rgba(255, 255, 255, 0.6);
-  border-radius: 20px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 8px 32px rgba(219, 39, 119, 0.1);
-  border: 2px solid rgba(244, 114, 182, 0.3);
-}
-
-.footer-text {
-  margin: 0;
-  font-size: 16px;
-  color: #831843;
-  font-family: "Helvetica Neue", sans-serif;
-}
-
-.footer-link {
-  color: #db2777;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-.footer-link:hover {
-  color: #be185d;
-  text-decoration: underline;
-}
-
-.footer-link::before {
-  content: "🎵";
-  margin-right: 4px;
-}
-
 @media (max-width: 800px) {
   body {
     background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 50%, #fbcfe8 100%);
@@ -488,14 +452,8 @@ button:active {
     font-size: 12px;
   }
 
-  .site-footer {
-    margin-top: 40px;
-    padding: 20px 16px;
-    border-radius: 16px;
-  }
-
-  .footer-text {
-    font-size: 14px;
+  .creator-credit {
+    font-size: 12px;
   }
 }
 
@@ -544,7 +502,7 @@ button:active {
     max-height: 80px;
   }
 
-  .footer-text {
-    font-size: 13px;
+  .creator-credit {
+    font-size: 11px;
   }
 }
