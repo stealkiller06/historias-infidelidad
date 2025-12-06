@@ -136,17 +136,30 @@ function App() {
         <p className="subtitle">
           Historias anónimas. Tú sólo estás mirando datos, técnicamente.
         </p>
-        <p className="creator-credit">
-          Creado por{" "}
-          <a
-            href="https://www.tiktok.com/@frank_pena?_r=1&_t=ZS-91zyJoQZShl"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="creator-link"
-          >
-            @frank_pena
-          </a>
-        </p>
+        <div className="credits-section">
+          <p className="source-credit">
+            📚 Historias recopiladas por{" "}
+            <a
+              href="https://sites.google.com/view/infielesrd/página-principal"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="source-link"
+            >
+              InfielesRD
+            </a>
+          </p>
+          <p className="creator-credit">
+            💻 Visualización creada por{" "}
+            <a
+              href="https://www.tiktok.com/@frank_pena?_r=1&_t=ZS-91zyJoQZShl"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="creator-link"
+            >
+              @frank_pena
+            </a>
+          </p>
+        </div>
       </header>
 
       <div className="layout">
