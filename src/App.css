@@ -242,10 +242,14 @@ button:active {
   font-size: 15px;
   color: #831843;
   line-height: 1.6;
-  max-height: 120px;
-  overflow: hidden;
   position: relative;
   font-family: "Helvetica Neue", sans-serif;
+  transition: max-height 0.3s ease;
+}
+
+.story-text.fade {
+  max-height: 120px;
+  overflow: hidden;
 }
 
 .story-text.fade::after {
@@ -310,6 +314,42 @@ button:active {
   text-decoration: underline;
   transform: none;
   box-shadow: none;
+}
+
+.site-footer {
+  margin-top: 60px;
+  padding: 30px 20px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(219, 39, 119, 0.1);
+  border: 2px solid rgba(244, 114, 182, 0.3);
+}
+
+.footer-text {
+  margin: 0;
+  font-size: 16px;
+  color: #831843;
+  font-family: "Helvetica Neue", sans-serif;
+}
+
+.footer-link {
+  color: #db2777;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.footer-link:hover {
+  color: #be185d;
+  text-decoration: underline;
+}
+
+.footer-link::before {
+  content: "🎵";
+  margin-right: 4px;
 }
 
 @media (max-width: 800px) {
@@ -404,6 +444,9 @@ button:active {
 
   .story-text {
     font-size: 14px;
+  }
+
+  .story-text.fade {
     max-height: 90px;
   }
 
@@ -420,6 +463,16 @@ button:active {
 
   .small-link {
     font-size: 12px;
+  }
+
+  .site-footer {
+    margin-top: 40px;
+    padding: 20px 16px;
+    border-radius: 16px;
+  }
+
+  .footer-text {
+    font-size: 14px;
   }
 }
 
@@ -461,6 +514,14 @@ button:active {
   }
 
   .story-text {
+    font-size: 13px;
+  }
+
+  .story-text.fade {
+    max-height: 80px;
+  }
+
+  .footer-text {
     font-size: 13px;
   }
 }
