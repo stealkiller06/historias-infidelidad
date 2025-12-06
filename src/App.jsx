@@ -1,5 +1,6 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useRef } from "react";
 import Papa from "papaparse";
+import html2canvas from "html2canvas";
 import "./App.css";
 
 const SHEET_CSV_URL =
@@ -273,6 +274,8 @@ function App() {
 
 function StoryCard({ story }) {
   const [expanded, setExpanded] = useState(false);
+  const [sharing, setSharing] = useState(false);
+  const cardRef = useRef(null);
 
   const displayName =
     story.name && story.name !== "." ? story.name : "Persona anónima";
@@ -283,8 +286,59 @@ function StoryCard({ story }) {
 
   const title = titleParts.join(" · ");
 
+  const handleShare = async (action) => {
+    if (!cardRef.current || sharing) return;
+
+    try {
+      setSharing(true);
+
+      // Temporarily expand the card and remove fade for full capture
+      const wasExpanded = expanded;
+      setExpanded(true);
+
+      // Wait for state update
+      await new Promise((resolve) => setTimeout(resolve, 100));
+
+      const canvas = await html2canvas(cardRef.current, {
+        backgroundColor: "#fdf2f8",
+        scale: 2,
+        logging: false,
+        useCORS: true,
+      });
+
+      if (action === "copy") {
+        // Copy to clipboard
+        canvas.toBlob(async (blob) => {
+          try {
+            await navigator.clipboard.write([
+              new ClipboardItem({ "image/png": blob }),
+            ]);
+            alert("✅ Historia copiada al portapapeles");
+          } catch (err) {
+            console.error("Error copying to clipboard:", err);
+            alert("❌ No se pudo copiar. Intenta descargar en su lugar.");
+          }
+        });
+      } else if (action === "download") {
+        // Download image
+        const link = document.createElement("a");
+        link.download = `historia-${story.id}.png`;
+        link.href = canvas.toDataURL();
+        link.click();
+      }
+
+      // Restore original state
+      setExpanded(wasExpanded);
+    } catch (err) {
+      console.error("Error sharing story:", err);
+      alert("❌ Error al compartir. Inténtalo de nuevo.");
+    } finally {
+      setSharing(false);
+    }
+  };
+
   return (
-    <article className="card">
+    <article className="card" ref={cardRef}>
       <div className="card-header">
         <div className="card-title">{title}</div>
         <span className="badge">Historia #{story.id}</span>
@@ -324,6 +378,39 @@ function StoryCard({ story }) {
         >
           {expanded ? "Ver menos" : "Ver historia completa"}
         </button>
+
+        <div className="share-section">
+          <span className="share-label">Compartir:</span>
+          <div className="share-buttons">
+            <button
+              type="button"
+              className="share-btn share-btn-copy"
+              onClick={() => handleShare("copy")}
+              disabled={sharing}
+            >
+              {sharing ? (
+                <>
+                  <span className="share-icon">📸</span>
+                  Capturando...
+                </>
+              ) : (
+                <>
+                  <span className="share-icon">📋</span>
+                  Copiar
+                </>
+              )}
+            </button>
+            <button
+              type="button"
+              className="share-btn share-btn-download"
+              onClick={() => handleShare("download")}
+              disabled={sharing}
+            >
+              <span className="share-icon">💾</span>
+              Descargar
+            </button>
+          </div>
+        </div>
       </div>
     </article>
   );
