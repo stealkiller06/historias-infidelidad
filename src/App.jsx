@@ -136,6 +136,17 @@ function App() {
         <p className="subtitle">
           Historias anónimas. Tú sólo estás mirando datos, técnicamente.
         </p>
+        <p className="creator-credit">
+          Creado por{" "}
+          <a
+            href="https://www.tiktok.com/@frank_pena?_r=1&_t=ZS-91zyJoQZShl"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="creator-link"
+          >
+            @frank_pena
+          </a>
+        </p>
       </header>
 
       <div className="layout">
@@ -243,20 +254,6 @@ function App() {
           </div>
         </main>
       </div>
-
-      <footer className="site-footer">
-        <p className="footer-text">
-          Hecho  por{" "}
-          <a
-            href="https://www.tiktok.com/@frank_pena?_r=1&_t=ZS-91zyJoQZShl"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="footer-link"
-          >
-            Frank Pena
-          </a>
-        </p>
-      </footer>
     </div>
   );
 }
